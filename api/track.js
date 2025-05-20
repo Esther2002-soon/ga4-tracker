@@ -7,7 +7,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Missing id or API secret" });
   }
 
-  const client_id = "notion-" + Date.now(); // Can be randomized for anonymity
+  // Generate realistic GA client ID (two-part number)
+  const client_id = `${Math.floor(Math.random() * 1e10)}.${Math.floor(Math.random() * 1e10)}`;
+
   const payload = {
     client_id,
     events: [
@@ -32,10 +34,12 @@ export default async function handler(req, res) {
       body: JSON.stringify(payload)
     });
 
+    const text = await gaRes.text();
+
     if (!gaRes.ok) {
-      console.error("❌ GA4 collect failed:", await gaRes.text());
+      console.error("❌ GA4 Error:", text);
     } else {
-      console.log("✅ Page view sent to GA4 for:", tag);
+      console.log("✅ GA4 page_view sent for:", tag);
     }
   } catch (e) {
     console.error("❌ GA4 tracking error:", e);
