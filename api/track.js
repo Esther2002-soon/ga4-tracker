@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     console.error("GA4 error:", e);
   }
 
-  // Return 1x1 GIF
+  // Return 1x1 transparent GIF
   const gif = Buffer.from("R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==", "base64");
   res.setHeader("Content-Type", "image/gif");
   res.setHeader("Content-Length", gif.length);
