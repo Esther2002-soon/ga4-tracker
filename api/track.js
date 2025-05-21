@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       {
         name: "page_view",
         params: {
-          page_title: decodeURIComponent(tag),
+          page_title: tag,  // ✅ use tag directly, no decode
           page_location: `https://notion.so/${encodeURIComponent(tag)}`
         }
       }
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     const gaRes = await fetch(endpoint, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json; charset=UTF-8"
       },
       body: JSON.stringify(payload)
     });
