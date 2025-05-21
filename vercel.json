@@ -2,11 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/track.html",
-      "dest": "/api/track.js"
-    },
-    {
-      "src": "/track",
+      "src": "/track(?:\\.html)?",
       "dest": "/api/track.js"
     }
   ]
