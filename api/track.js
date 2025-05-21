@@ -25,14 +25,25 @@ export default async function handler(req, res) {
 
   const endpoint = `https://www.google-analytics.com/mp/collect?measurement_id=${id}&api_secret=${api_secret}`;
 
-  await fetch(endpoint, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "User-Agent": req.headers['user-agent'] || "Mozilla/5.0 (Notion Tracker)"
-  },
-  body: JSON.stringify(payload)
-});
+  try {
+    const gaRes = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const text = await gaRes.text();
+
+    if (!gaRes.ok) {
+      console.error("❌ GA4 Error:", text);
+    } else {
+      console.log("✅ GA4 page_view sent for:", tag);
+    }
+  } catch (e) {
+    console.error("❌ GA4 tracking error:", e);
+  }
 
   // Return transparent GIF
   const gif = Buffer.from("R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==", "base64");
