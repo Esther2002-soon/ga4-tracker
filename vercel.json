@@ -1,6 +1,6 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/track(?:\\.html)?", "dest": "/api/tracker.js" }
+    { "src": "/track(?:\\.html)?", "dest": "/api/track.js" }
   ]
 }
