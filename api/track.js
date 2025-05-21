@@ -8,15 +8,15 @@ export default async function handler(req, res) {
 
   const decodedTag = decodeURIComponent(tag);
 
-  const html = `
+  const html = \`
     <!DOCTYPE html>
     <html lang="zh-Hant">
     <head>
       <meta charset="UTF-8">
-      <title>${decodedTag}</title>
+      <title>\${decodedTag}</title>
       <script>
-        const ga4id = "${id}";
-        const tag = "${decodedTag}";
+        const ga4id = "\${id}";
+        const tag = "\${decodedTag}";
 
         document.title = tag;
 
@@ -52,8 +52,11 @@ export default async function handler(req, res) {
         }
       </style>
     </head>
+    <body>
+      📊 正在追蹤：\${decodedTag}
+    </body>
     </html>
-  `;
+  \`;
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.status(200).send(html);
