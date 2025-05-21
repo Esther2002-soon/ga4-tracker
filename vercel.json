@@ -2,7 +2,11 @@
   "version": 2,
   "routes": [
     {
-      "src": "/track.gif",
+      "src": "/track.html",
+      "dest": "/api/track.js"
+    },
+    {
+      "src": "/track",
       "dest": "/api/track.js"
     }
   ]
