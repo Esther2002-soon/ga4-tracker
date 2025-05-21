@@ -47,9 +47,6 @@ export default async function handler(req, res) {
         }
       </style>
     </head>
-    <body>
-      正在追蹤頁面：${decodedTag}
-    </body>
     </html>
   `;
 
