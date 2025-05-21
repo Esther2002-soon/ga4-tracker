@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       {
         name: "page_view",
         params: {
-          page_title: tag,
+          page_title: decodeURIComponent(tag),
           page_location: `https://notion.so/${encodeURIComponent(tag)}`
         }
       }
